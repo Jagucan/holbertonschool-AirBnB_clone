@@ -17,12 +17,13 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key == "created_at" or key == "updated_at":
-                        value = datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                        value = datetime.datetime.strptime\
+                            (value, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, value)
 
     def __str__(self):
         """ Print str format... """
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """ Updates the public instance attribute with the current datetime """

@@ -2,7 +2,7 @@
 """ File Storage Module """
 import json
 import os.path
-
+from models.base_model import BaseModel
 
 class FileStorage:
     """ Class File Storage """

@@ -17,9 +17,9 @@ def parse(arg):
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    classes = {"BaseModel": BaseModel, "User": User,
-               "Place": Place, "State": State, "City": City,
-               "Amenity": Amenity, "Review": Review}
+    classes = {'BaseModel', 'User',
+               'Place', 'State', 'City',
+               'Amenity', 'Review'}
 
     def do_quit(self, arg):
         """ Quit and exit the program whit quit command """

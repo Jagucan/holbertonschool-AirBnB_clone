@@ -42,8 +42,8 @@ class HBNBCommand(cmd.Cmd):
             print(item.id)
             models.storage.save
     
-    def parse(arg):
-        return shlex.split(arg)
+def parse(arg):
+    return shlex.split(arg)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

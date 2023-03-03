@@ -3,7 +3,6 @@
 import cmd
 import shlex
 import models
-from models.base_model import BaseModel
 
 
 def parse(arg):

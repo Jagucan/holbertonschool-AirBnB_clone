@@ -3,6 +3,7 @@
 import cmd
 import shlex
 import models
+from models.base_model import BaseModel
 
 
 def parse(arg):
@@ -100,6 +101,33 @@ class HBNBCommand(cmd.Cmd):
             print(item.id)
             models.storage.new(item)
             models.storage.save()
+
+    def do_update(self, arg):
+        args = parse(arg)
+        items = models.storage.all()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in self.classes:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            key = '{}.{}'.format(args[0], args[1])
+            try:
+                item = items[key]
+                if len(args) == 2:
+                    print("** attribute name missing **")
+                elif len(args) == 3:
+                    print("** value missing **")
+                else:
+                    try:
+                        eval(args[3])
+                    except (SyntaxError, NameError):
+                        args[3] = "'{}'".format(args[3])
+                    setattr(item, args[2], eval(args[3]))
+                    item.save()
+            except KeyError:
+                print("** no instance found **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

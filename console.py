@@ -3,6 +3,7 @@
 import cmd
 import shlex
 import models
+from models.user import User
 from models.base_model import BaseModel
 
 
@@ -11,7 +12,7 @@ def parse(arg):
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    classes = ["BaseModel"]
+    classes = {"BaseModel": BaseModel,"User": User}
 
     def do_quit(self, arg):
         """ Quit and exit the program whit quit command """

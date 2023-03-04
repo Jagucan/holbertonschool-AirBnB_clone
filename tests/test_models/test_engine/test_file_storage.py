@@ -21,7 +21,7 @@ class TestFileStorage(unittest.TestCase):
     def tearDown(self):
         """ Tear down test environment """
         if os.path.exists(self.file_path):
-            os.remove(self.file_path)
+            os.remove(self.storage)
 
     def test_file_storage_reload_method(self):
         """Test reload method"""

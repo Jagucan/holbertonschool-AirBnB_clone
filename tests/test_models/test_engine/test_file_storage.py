@@ -11,6 +11,18 @@ from models.base_model import BaseModel
 
 class TestFileStorage(unittest.TestCase):
     """class TestFileStorage """
+
+    def setUp(self):
+        """ Set up test environment """
+        self.file_path = "test.json"
+        self.storage = FileStorage()
+        self.model = BaseModel()
+
+    def tearDown(self):
+        """ Tear down test environment """
+        if os.path.exists(self.file_path):
+            os.remove(self.file_path)
+
     def test_file_storage_reload_method(self):
         """Test reload method"""
         self.model.save()

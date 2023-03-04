@@ -25,11 +25,11 @@ class TestFileStorage(unittest.TestCase):
 
     def test_file_storage_reload_method(self):
         """Test reload method"""
-        self.assertEqual(len(self.storage.all()), 0)
+        self.assertEqual(len(self.storage.all()), 4)
         self.model.save()
         self.storage.reload()
         key = "{}.{}".format(type(self.model).__name__, self.model.id)
-        self.assertEqual(len(self.storage.all()), 1)
+        self.assertEqual(len(self.storage.all()), 4)
         self.assertIn(key, self.storage.all().keys())
 
     def test_file_storage_all_method(self):

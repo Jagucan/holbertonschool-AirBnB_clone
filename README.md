@@ -36,7 +36,7 @@ This repository contains the console from a lite clone of AirBnB, the console is
 
 ### Test
 
-* This time we are using the Python Unittest module.
+* This time we are using the Python <a href="https://docs.python.org/3.4/library/unittest.html">Unittest module</a>.
  - We are running all tests individually.
 
         python3 -m unittest tests/test_models/test_base_model.py

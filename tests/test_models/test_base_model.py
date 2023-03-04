@@ -26,7 +26,8 @@ class Test_BaseModel(unittest.TestCase):
 
     def test_to_save(self):
         """ Test for save instance method """
-        before = BaseModel().updated_at
-        BaseModel().save()
-        after = BaseModel().updated_at
+        model = BaseModel()
+        before = model.updated_at
+        model.save()
+        after = model.updated_at
         self.assertLess(before, after)

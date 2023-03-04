@@ -12,7 +12,9 @@ This repository contains the console from a lite clone of AirBnB, the console is
 
         prompt$ ./console.py
 
-        (hbnb)
+        (hbnb) quit
+
+        prompt$
 
 ## Usage in non-interactive mode
 

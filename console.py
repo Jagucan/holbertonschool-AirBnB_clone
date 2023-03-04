@@ -15,6 +15,7 @@ from models.review import Review
 def parse(arg):
     return shlex.split(arg)
 
+
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     classes = {'BaseModel', 'User',
@@ -43,9 +44,10 @@ class HBNBCommand(cmd.Cmd):
 
     def help_help(self):
         """ Prints the documentation for help command """
-        print("List available commands with \"help\" or detailed help with \"help cmd\"")
+        print("List commands with \"help\" or detailed with \"help cmd\"")
 
     def do_destroy(self, arg):
+        """ Deletes an instance based on the class name and id """
         args = parse(arg)
         if len(args) == 0:
             print("** class name missing **")
@@ -65,6 +67,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
+        """ Prints all string representation of all instances """
         args = parse(arg)
         items = models.storage.all()
         item_list = []
@@ -82,6 +85,7 @@ class HBNBCommand(cmd.Cmd):
             print(item_list)
 
     def do_show(self, arg):
+        """ Prints the string representation of an instance """
         args = parse(arg)
         if len(args) == 0:
             print("** class name missing **")
@@ -99,6 +103,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_create(self, arg):
+        """  Creates a new instance, save it and prints the id """
         args = parse(arg)
         if len(args) == 0:
             print("** class name missing **")
@@ -111,6 +116,7 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
 
     def do_update(self, arg):
+        """ Updates an instance based on the class name and id """
         args = parse(arg)
         items = models.storage.all()
         if len(args) == 0:

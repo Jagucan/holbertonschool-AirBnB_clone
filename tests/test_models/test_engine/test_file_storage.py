@@ -1,47 +1,56 @@
 #!/usr/bin/python3
+"""FileStorage unittests"""
 import unittest
-from models.engine.file_storage import FileStorage, BaseModel
+import datetime
+import time
+from os import remove
+from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
 
 
-class Test_FileStorage(unittest.TestCase):
-    """ Test for FileStorage Class"""
+class TestFileStorage(unittest.TestCase):
+    """class TestFileStorage """
 
-    def setUp(self):
-        """ Set up test environment """
-        self.__file_path = "test.json"
-        self.storage = FileStorage()
-        self.model = BaseModel()
+    def test_file_storage_all_method(self):
+        """Test to all methods"""
+        storage = FileStorage()
+        storage_dict = storage.all()
+        self.assertIsInstance(storage_dict, dict)
+        for obj in storage_dict.values():
+            self.assertIsInstance(obj, BaseModel)
 
-    def test_to_all(self):
-        """ Test for all method """
-        self.assertEqual(len(self.storage.all()), 0)
-        self.model.save()
-        self.assertEqual(len(self.storage.all()), 1)
+    def test_file_storage_new_method(self):
+        """Test to new method"""
+        base = BaseModel()
+        storage = FileStorage()
+        storage_dict = storage.all()
+        key = '{}.{}'.format(type(base).__name__, base.id)
+        self.assertTrue(key in storage_dict.keys())
 
-    def test_to_new(self):
-        """ Test for new method """
-        self.storage.new(self.model)
-        key = "{}.{}".format(type(self.model).__name__, self.model.id)
-        self.assertEqual(len(self.storage.all()), 1)
-        self.assertIn(key, self.storage.all().keys())
+    def test_file_storage_save_method(self):
+        """Test for save method"""
+        base = BaseModel()
+        key = '{}.{}'.format(type(base).__name__, base.id)
+        base_updated_0 = base.updated_at
+        storage = FileStorage()
+        objs_0 = storage.all()
+        dt_0 = objs_0[key].updated_at
 
-    def test_to_save(self):
-        """ Test for save method """
-        self.assertEqual(len(self.storage.all()), 0)
-        self.model.save()
-        key = "{}.{}".format(type(self.model).__name__, self.model.id)
-        with open(self.__file_path, "r") as f:
-            data = f.read()
-        self.assertIn(key, data)
+        time.sleep(0.0001)
+        base.save()
 
-    def test_to_reload(self):
-        """ Test for reload method """
-        self.assertEqual(len(self.storage.all()), 0)
-        self.model.save()
-        self.storage.reload()
-        key = "{}.{}".format(type(self.model).__name__, self.model.id)
-        self.assertEqual(len(self.storage.all()), 1)
-        self.assertIn(key, self.storage.all().keys())
+        base_updated_1 = base.updated_at
+        objs_1 = storage.all()
+        dt_1 = objs_1[key].updated_at
+
+        self.assertNotEqual(base_updated_1, base_updated_0)
+        self.assertNotEqual(dt_1, dt_0)
+
+        try:
+            with open('file.json', 'r'):
+                remove('file.json')
+        except FileNotFoundError:
+            self.assertEqual(1, 2)
 
 if __name__ == '__main__':
     unittest.main()

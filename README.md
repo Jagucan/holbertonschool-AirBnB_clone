@@ -9,6 +9,7 @@ This repository contains the console from a lite clone of AirBnB, the console is
 ## Usage in interactive mode
 
 * This program automatically displays a prompt for the user after first command is executed
+
     prompt$ ./console.py
     (hbnb)
 

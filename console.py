@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         """ Quit and exit the program whit quit command """
         return True
 
-    def do_EOF(self, arg):
+    def do_EOF(self):
         """ Quit and exit the program whit EOF command """
         return True
 
@@ -142,6 +142,13 @@ class HBNBCommand(cmd.Cmd):
                     item.save()
             except KeyError:
                 print("** no instance found **")
+
+    def cmdloop(self):
+        """ Quit the program whit Ctrl + C """
+        try:
+            super().cmdloop()
+        except KeyboardInterrupt:
+            return True
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

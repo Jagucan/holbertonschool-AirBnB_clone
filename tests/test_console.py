@@ -15,7 +15,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_quit(self):
         """ """
         self.assertTrue(self.console.onecmd("quit"))
-    
+
     def create(self, server=None):
         """ """
         return HBNBCommand(stdin=self.mock_stdin, stdout=self.mock_stdout)

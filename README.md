@@ -26,23 +26,30 @@ This repository contains the console from a lite clone of AirBnB, the console is
 
         $
 
-## known bugs:
+## known bugs
 
 * There are not any known bugs at the moment.
 
-## Flowchart:
+## Flowchart
 
 <img src=""/>
 
-### General.
+### Test
+
+* This time we are using the Python Unittest module
+ - We are running all tests individually
+        python3 -m unittest tests/test_models/test_base_model.py
+        ....
+        ----------------------------------------------------------------------
+        Ran 4 tests in 0.001s
+
+        OK
+
+## Examples
 
 * 
 
-## Examples:
-
-* 
-
-## Authors:
+## Authors
 
 @Jagucan
 

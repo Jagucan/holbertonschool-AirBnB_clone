@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""FileStorage unittests"""
+""" FileStorage unittests """
 import unittest
 import datetime
 import time
+import os
 from os import remove
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
@@ -10,6 +11,26 @@ from models.base_model import BaseModel
 
 class TestFileStorage(unittest.TestCase):
     """class TestFileStorage """
+
+    def setUp(self):
+        """ Set up test environment """
+        self.file_path = "test.json"
+        self.storage = FileStorage()
+        self.model = BaseModel()
+
+    def tearDown(self):
+        """ Tear down test environment """
+        if os.path.exists(self.file_path):
+            os.remove(self.file_path)
+
+    def test_file_storage_reload_method(self):
+        """Test reload method"""
+        self.assertEqual(len(self.storage.all()), 0)
+        self.model.save()
+        self.storage.reload()
+        key = "{}.{}".format(type(self.model).__name__, self.model.id)
+        self.assertEqual(len(self.storage.all()), 1)
+        self.assertIn(key, self.storage.all().keys())
 
     def test_file_storage_all_method(self):
         """Test to all methods"""

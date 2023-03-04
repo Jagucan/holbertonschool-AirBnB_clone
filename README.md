@@ -46,9 +46,17 @@ This repository contains the console from a lite clone of AirBnB, the console is
 
         OK
 
-## Examples
-
-* 
+## Commands
+| Name | CDescription | Use |
+|    :---:     |      :---:     |     :---:     |
+|   help   | Shows the usage information of a command     | help [command]    |
+|   quit     | Used to quit the program       | quit      |
+|   EOF   |   Exits the program with end of file command | N/A |
+|   create  |   Creates a new instance of a specified class |   create [class_name] |
+|   show    |   Shows the string representation of an instance  |   show [class_name] [id]  |
+|   destroy |   Deletes an instance |   destroy [class_name] [id]   |
+|   all |   Prints the string representation of all instances of a class    |   all / all [class_name] [id] |
+|   update  |   Adds or modifies attributes to an instance  |   update [class_name] [id] [attribute] [value]    |
 
 ## Authors
 

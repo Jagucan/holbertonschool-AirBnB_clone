@@ -1,6 +1,6 @@
 # AirBnB clone - The console
 
-This repository contains the console from a lite clone of AirBnB, the console is complete and will be merged with the website on next stages, it specifies classes for <b>User</b>, <b>State</b>, <b>City</b>, <b>Amenity</b> and <b>Review</b>; all of them inherit from the <b>BaseModel</b> class.
+This repository contains the console from a lite clone of <a href="https://www.airbnb.com/">AirBnB</a>, the console is complete and will be merged with the website on next stages, it specifies classes for <b>User</b>, <b>State</b>, <b>City</b>, <b>Amenity</b> and <b>Review</b>; all of them inherit from the <b>BaseModel</b> class.
 
 ## Requirements
 

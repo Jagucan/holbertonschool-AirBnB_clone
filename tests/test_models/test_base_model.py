@@ -2,7 +2,6 @@
 import unittest
 from models.base_model import BaseModel
 
-
 class Test_BaseModel(unittest.TestCase):
     """ Test for BaseModel Class"""
 
@@ -13,11 +12,10 @@ class Test_BaseModel(unittest.TestCase):
 
     def test_to_str_rep(self):
         """ Test for str instance representation """
+        b = BaseModel()
         self.assertIsInstance(str(BaseModel()), str)
-        self.assertIn("'created_at': {}".format(
-            repr(BaseModel().created_at)), str(BaseModel()))
-        self.assertIn("'updated_at': {}".format(
-            repr(BaseModel().updated_at)), str(BaseModel()))
+        self.assertIn("'created_at': {}".format(repr(b.created_at)), str(b))
+        self.assertIn("'updated_at': {}".format(repr(b.updated_at)), str(b))
 
     def test_to_dict(self):
         """ Test for dict instance method """

@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_help(self):
         """ Prints the documentation for help command """
-        print("List commands with \"help\" or detailed with \"help cmd\"")
+        print("List commands with \"help\" or detailed with \"help + commad\"")
 
     def do_destroy(self, arg):
         """ Deletes an instance based on the class name and id """

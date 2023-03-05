@@ -3,6 +3,7 @@ import unittest
 import datetime
 import time
 import os
+import json
 from os import remove
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
@@ -20,14 +21,16 @@ class TestFileStorage(unittest.TestCase):
         self.test_base = BaseModel()
         self.test_storage = FileStorage()
         self.test_user = User()
-        self.filepath = 'file.json'
         self.test_user.save()
         self.test_base.save()
+        if os.path.exists("file.json"):
+            pass
+        else:
+            os.mknod("file.json")
 
     def tearDown(self):
         """ Tear down test environment """
-        if os.path.exists(self.filepath):
-            os.remove(self.filepath)
+        os.remove(self.filepath)
 
     def test_file_storage_reload_method(self):
         """Test reload method"""

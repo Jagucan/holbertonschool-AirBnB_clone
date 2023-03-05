@@ -33,8 +33,8 @@ class TestFileStorage(unittest.TestCase):
     def test_reload(self):
         for all_id in data.keys():
             obj = data[all_id]
-        print(obj)
-        self.assertIsNotNone(obj)
+            print(obj)
+            self.assertIsNotNone(obj)
 
     def test_file_storage_all_method(self):
         """Test to all methods"""

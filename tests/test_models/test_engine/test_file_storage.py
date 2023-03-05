@@ -24,19 +24,17 @@ class TestFileStorage(unittest.TestCase):
         self.test_user.save()
         self.test_base.save()
         
+
     def tearDown(self):
         """ Tear down test environment """
-        try:
-            os.remove(self.filepath)
-        except FileNotFoundError:
-            pass
+        os.remove(self.filepath)
 
     def test_file_storage_reload_method(self):
         """Test reload method"""
         for id in data.keys():
             item = data[id]
-            print(item)
-            self.assertIsNotNone(item)
+        print(item)
+        self.assertIsNotNone(item)
 
     def test_file_storage_all_method(self):
         """Test to all methods"""
@@ -74,9 +72,10 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(dt_1, dt_0)
 
         try:
-            os.remove(self.filepath)
+            with open('file.json', 'r'):
+                remove('file.json')
         except FileNotFoundError:
-            pass
+            self.assertEqual(1, 2)
 
 if __name__ == '__main__':
     unittest.main()

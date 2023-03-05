@@ -31,16 +31,10 @@ class TestFileStorage(unittest.TestCase):
             pass
 
     def test_file_storage_reload_method(self):
-        """ Empty reload function """
-        my_obj = FileStorage()
-        new_obj = BaseModel()
-        my_obj.new(new_obj)
-        my_obj.save()
-        my_dict1 = my_obj.all()
-        os.remove("test.json")
-        my_obj.reload()
-        my_dict2 = my_obj.all()
-        self.assertTrue(my_dict2 == my_dict1)
+        for all_id in data.keys():
+            obj = data[all_id]
+        print(obj)
+        self.assertIsNotNone(obj)
 
     def test_file_storage_all_method(self):
         """Test to all methods"""

@@ -4,6 +4,7 @@ import unittest
 import sys
 from unittest.mock import create_autospec
 from console import HBNBCommand
+import json
 
 
 class TestHBNBCommand(unittest.TestCase):

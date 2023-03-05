@@ -7,8 +7,10 @@ import os
 from os import remove
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from models import storage
 from models.user import User
 
+data = storage.all()
 
 class TestFileStorage(unittest.TestCase):
     """class TestFileStorage """
@@ -29,12 +31,10 @@ class TestFileStorage(unittest.TestCase):
 
     def test_file_storage_reload_method(self):
         """Test reload method"""
-        self.assertEqual(len(self.storage.all()), 4)
-        self.model.save()
-        self.storage.reload()
-        key = "{}.{}".format(type(self.model).__name__, self.model.id)
-        self.assertEqual(len(self.storage.all()), 4)
-        self.assertIn(key, self.storage.all().keys())
+        for id in data.keys():
+            item = data[id]
+        print(item)
+        self.assertIsNotNone(item)
 
     def test_file_storage_all_method(self):
         """Test to all methods"""

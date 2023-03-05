@@ -21,13 +21,13 @@ class TestFileStorage(unittest.TestCase):
         self.test_base = BaseModel()
         self.test_storage = FileStorage()
         self.test_user = User()
-        self.filepath = 'file.json'
+        self.filepath = "file.json"
         self.test_user.save()
         self.test_base.save()
 
     def tearDown(self):
-        """ Tear down test environment """
-        os.remove(self.filepath)
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_file_storage_reload_method(self):
         """Test reload method"""

@@ -31,11 +31,16 @@ class TestFileStorage(unittest.TestCase):
             pass
 
     def test_file_storage_reload_method(self):
-        """Test reload method"""
-        for id in data.keys():
-            item = data[id]
-            print(item)
-            self.assertIsNotNone(item)
+        """ Empty reload function """
+        my_obj = FileStorage()
+        new_obj = BaseModel()
+        my_obj.new(new_obj)
+        my_obj.save()
+        my_dict1 = my_obj.all()
+        os.remove("test.json")
+        my_obj.reload()
+        my_dict2 = my_obj.all()
+        self.assertTrue(my_dict2 == my_dict1)
 
     def test_file_storage_all_method(self):
         """Test to all methods"""
@@ -54,23 +59,19 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(key in storage_dict.keys())
 
     def test_file_storage_save_method(self):
-        """Test for save method"""
-        base = BaseModel()
-        key = '{}.{}'.format(type(base).__name__, base.id)
-        base_updated_0 = base.updated_at
-        storage = FileStorage()
-        objs_0 = storage.all()
-        dt_0 = objs_0[key].updated_at
-
-        time.sleep(0.0001)
-        base.save()
-
-        base_updated_1 = base.updated_at
-        objs_1 = storage.all()
-        dt_1 = objs_1[key].updated_at
-
-        self.assertNotEqual(base_updated_1, base_updated_0)
-        self.assertNotEqual(dt_1, dt_0)
+        """ Tests the save method for filestorage """
+        my_obj = FileStorage()
+        new_obj = BaseModel()
+        my_obj.new(new_obj)
+        my_dict1 = my_obj.all()
+        my_obj.save()
+        my_obj.reload()
+        my_dict2 = my_obj.all()
+        for key in my_dict1:
+            key1 = key
+        for key in my_dict2:
+            key2 = key
+        self.assertEqual(my_dict1[key1].to_dict(), my_dict2[key2].to_dict())
 
         os.remove('file.json')
 

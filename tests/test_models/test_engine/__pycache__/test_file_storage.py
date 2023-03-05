@@ -19,7 +19,7 @@ class TestFileStorage(unittest.TestCase):
         self.test_base = BaseModel()
         self.test_storage = FileStorage()
         self.test_user = User()
-        self.__file_path = 'file.json'
+        self.__file_path = "test.json"
         self.test_user.save()
         self.test_base.save()
 
@@ -70,7 +70,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(base_updated_1, base_updated_0)
         self.assertNotEqual(dt_1, dt_0)
 
-        os.remove('file.json')
+        os.remove('test.json')
 
 if __name__ == '__main__':
     unittest.main()

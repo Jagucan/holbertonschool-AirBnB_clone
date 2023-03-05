@@ -1,43 +1,46 @@
-""" FileStorage unittests """
+#!/usr/bin/python3
+""" Module FileStorage """
+import os
+import time
+import json
 import unittest
 import datetime
-import time
-import os
-import json
 from os import remove
-from models.engine.file_storage import FileStorage
-from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+
 
 data = storage.all()
 
 
 class TestFileStorage(unittest.TestCase):
-    """class TestFileStorage """
+    """ Test for TestFileStorage Class """
 
     def setUp(self):
-        """ condition to test file saving """
+        """ Metode to test file saving """
         with open("test.json", 'w'):
             FileStorage._FileStorage__file_path = "test.json"
             FileStorage._FileStorage__objects = {}
 
     def tearDown(self):
-        """ destroys created file """
+        """ Destroys created file """
         FileStorage._FileStorage__file_path = "test.json"
         try:
             os.remove("test.json")
         except FileNotFoundError:
             pass
 
-    def test_reload(self):
+    def test_file_storage_reload_methode(self):
+        """ Test for reload method """
         for all_id in data.keys():
             obj = data[all_id]
             print(obj)
             self.assertIsNotNone(obj)
 
     def test_file_storage_all_method(self):
-        """Test to all methods"""
+        """ Test for all method """
         storage = FileStorage()
         storage_dict = storage.all()
         self.assertIsInstance(storage_dict, dict)
@@ -45,7 +48,7 @@ class TestFileStorage(unittest.TestCase):
             self.assertIsInstance(obj, BaseModel)
 
     def test_file_storage_new_method(self):
-        """Test to new method"""
+        """ Test for new method """
         base = BaseModel()
         storage = FileStorage()
         storage_dict = storage.all()
@@ -53,7 +56,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(key in storage_dict.keys())
 
     def test_file_storage_save_method(self):
-        """ Tests the save method for filestorage """
+        """ Test for save method """
         my_obj = FileStorage()
         new_obj = BaseModel()
         my_obj.new(new_obj)

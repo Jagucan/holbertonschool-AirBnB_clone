@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """ FileStorage unittests """
 import unittest
 import datetime
@@ -12,6 +11,7 @@ from models.user import User
 
 data = storage.all()
 
+
 class TestFileStorage(unittest.TestCase):
     """class TestFileStorage """
 
@@ -23,18 +23,18 @@ class TestFileStorage(unittest.TestCase):
         self.filepath = 'file.json'
         self.test_user.save()
         self.test_base.save()
-        
 
     def tearDown(self):
         """ Tear down test environment """
-        os.remove(self.filepath)
+        if os.path.exists(self.filepath):
+            os.remove(self.filepath)
 
     def test_file_storage_reload_method(self):
         """Test reload method"""
         for id in data.keys():
             item = data[id]
-        print(item)
-        self.assertIsNotNone(item)
+            print(item)
+            self.assertIsNotNone(item)
 
     def test_file_storage_all_method(self):
         """Test to all methods"""
@@ -71,11 +71,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(base_updated_1, base_updated_0)
         self.assertNotEqual(dt_1, dt_0)
 
-        try:
-            with open('file.json', 'r'):
-                remove('file.json')
-        except FileNotFoundError:
-            self.assertEqual(1, 2)
+        os.remove('file.json')
 
 if __name__ == '__main__':
     unittest.main()

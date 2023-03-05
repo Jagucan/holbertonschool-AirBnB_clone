@@ -20,7 +20,7 @@ class TestFileStorage(unittest.TestCase):
         self.test_base = BaseModel()
         self.test_storage = FileStorage()
         self.test_user = User()
-        self.filepath = "file.json"
+        self.filepath = 'file.json'
         self.test_user.save()
         self.test_base.save()
         

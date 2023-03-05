@@ -17,17 +17,18 @@ class TestFileStorage(unittest.TestCase):
     """class TestFileStorage """
 
     def setUp(self):
-        """Set up the instances"""
-        self.test_base = BaseModel()
-        self.test_storage = FileStorage()
-        self.test_user = User()
-        self.filepath = "file.json"
-        self.test_user.save()
-        self.test_base.save()
+        """ condition to test file saving """
+        with open("test.json", 'w'):
+            FileStorage._FileStorage__file_path = "test.json"
+            FileStorage._FileStorage__objects = {}
 
     def tearDown(self):
-        if os.path.exists("file.json"):
-            os.remove("file.json")
+        """ destroys created file """
+        FileStorage._FileStorage__file_path = "file.json"
+        try:
+            os.remove("test.json")
+        except FileNotFoundError:
+            pass
 
     def test_file_storage_reload_method(self):
         """Test reload method"""

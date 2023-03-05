@@ -7,21 +7,25 @@ import os
 from os import remove
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class TestFileStorage(unittest.TestCase):
     """class TestFileStorage """
 
     def setUp(self):
-        """ Set up test environment """
-        self.file_path = "test.json"
-        self.storage = FileStorage()
-        self.model = BaseModel()
+        """Set up the instances"""
+        self.test_base = BaseModel()
+        self.test_storage = FileStorage()
+        self.test_user = User()
+        self.filepath = "file.json"
+        self.test_user.save()
+        self.test_base.save()
+        
 
     def tearDown(self):
         """ Tear down test environment """
-        if os.path.exists(self.file_path):
-            os.remove(self.file_path)
+        os.remove(self.file_path)
 
     def test_file_storage_reload_method(self):
         """Test reload method"""

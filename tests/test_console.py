@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ Test for Console """
-import unittest
 import sys
-from unittest.mock import create_autospec
-from console import HBNBCommand
 import json
+import unittest
+from console import HBNBCommand
+from unittest.mock import create_autospec
 
 
 class TestHBNBCommand(unittest.TestCase):

@@ -69,18 +69,18 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """ Prints all string representation of all instances """
         args = parse(arg)
-        items = models.storage.all()
+        objs = models.storage.all()
         item_list = []
         if len(args) >= 1:
             if args[0] not in self.classes:
                 print("** class doesn't exist **")
             else:
-                for key, item in items.items():
+                for key, item in objs.items():
                     if key.startswith(args[0]):
                         item_list.append(item.__str__())
                 print(item_list)
         else:
-            for item in items.values():
+            for item in objs.values():
                 item_list.append(item.__str__())
             print(item_list)
 

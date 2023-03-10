@@ -30,10 +30,6 @@ This repository contains the console from a lite clone of <a href="https://www.a
 
 * There are not any known bugs at the moment.
 
-## Flowchart
-
-<img src=""/>
-
 ### Test
 
 * This time we are using the Python <a href="https://docs.python.org/3.4/library/unittest.html">Unittest module</a>.
